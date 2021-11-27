@@ -81,67 +81,83 @@ mod tests {
             match wild{
                 Suit::Clubs     => {
                     assert_eq!(game.compute_winner(
-                        &Card::new(Rank::Ace, Suit::Clubs), 
-                        &Card::new(Rank::Joker, Suit::Clubs), 
-                        &Card::new(Rank::Ace, Suit::Hearts), 
-                        &Card::new(Rank::Ace, Suit::Diamonds)
+                        Card::new(Rank::Ace, Suit::Clubs), 
+                        Card::new(Rank::Joker, Suit::Clubs), 
+                        Card::new(Rank::Ace, Suit::Hearts), 
+                        Card::new(Rank::Ace, Suit::Diamonds),
+                        None,
+                        None
                     ), 1);
                 },
                 Suit::Diamonds     => {
                     assert_eq!(game.compute_winner(
-                        &Card::new(Rank::Ace, Suit::Clubs), 
-                        &Card::new(Rank::Six, Suit::Clubs), 
-                        &Card::new(Rank::Ace, Suit::Hearts), 
-                        &Card::new(Rank::Ace, Suit::Diamonds)
+                        Card::new(Rank::Ace, Suit::Clubs), 
+                        Card::new(Rank::Six, Suit::Clubs), 
+                        Card::new(Rank::Ace, Suit::Hearts), 
+                        Card::new(Rank::Ace, Suit::Diamonds),
+                        None,
+                        None
                     ), 3);
                 },
                 Suit::Hearts     => {
                     assert_eq!(game.compute_winner(
-                        &Card::new(Rank::Ace, Suit::Clubs), 
-                        &Card::new(Rank::Seven, Suit::Clubs), 
-                        &Card::new(Rank::Ace, Suit::Hearts), 
-                        &Card::new(Rank::Ace, Suit::Diamonds)
+                        Card::new(Rank::Ace, Suit::Clubs), 
+                        Card::new(Rank::Seven, Suit::Clubs), 
+                        Card::new(Rank::Ace, Suit::Hearts), 
+                        Card::new(Rank::Ace, Suit::Diamonds),
+                        None,
+                        None
                     ), 2);
                 },
                 Suit::Spades     => {
                     assert_eq!(game.compute_winner(
-                        &Card::new(Rank::Seven, Suit::Clubs), 
-                        &Card::new(Rank::Eight, Suit::Spades), 
-                        &Card::new(Rank::Nine, Suit::Hearts), 
-                        &Card::new(Rank::Ten, Suit::Diamonds)
+                        Card::new(Rank::Seven, Suit::Clubs), 
+                        Card::new(Rank::Eight, Suit::Spades), 
+                        Card::new(Rank::Nine, Suit::Hearts), 
+                        Card::new(Rank::Ten, Suit::Diamonds),
+                        None,
+                        None
                     ), 1);
                     match game.dealer {
                         0   => {
                             assert_eq!(game.compute_winner(
-                                &Card::new(Rank::Seven, Suit::Diamonds), 
-                                &Card::new(Rank::Eight, Suit::Hearts), 
-                                &Card::new(Rank::Nine, Suit::Diamonds), 
-                                &Card::new(Rank::Ten, Suit::Diamonds)
+                                Card::new(Rank::Seven, Suit::Diamonds), 
+                                Card::new(Rank::Eight, Suit::Hearts), 
+                                Card::new(Rank::Nine, Suit::Diamonds), 
+                                Card::new(Rank::Ten, Suit::Diamonds),
+                                None,
+                                None
                             ), 1);
                         },
                         1   => {
                             assert_eq!(game.compute_winner(
-                                &Card::new(Rank::Seven, Suit::Diamonds), 
-                                &Card::new(Rank::Eight, Suit::Hearts), 
-                                &Card::new(Rank::King, Suit::Diamonds), 
-                                &Card::new(Rank::Ten, Suit::Diamonds)
+                                Card::new(Rank::Seven, Suit::Diamonds), 
+                                Card::new(Rank::Eight, Suit::Hearts), 
+                                Card::new(Rank::King, Suit::Diamonds), 
+                                Card::new(Rank::Ten, Suit::Diamonds),
+                                None,
+                                None
                             ), 2);
                         },
                         2   => {
                             assert_eq!(game.compute_winner(
-                                &Card::new(Rank::Seven, Suit::Diamonds), 
-                                &Card::new(Rank::Eight, Suit::Hearts), 
-                                &Card::new(Rank::King, Suit::Diamonds), 
-                                &Card::new(Rank::Ten, Suit::Hearts)
+                                Card::new(Rank::Seven, Suit::Diamonds), 
+                                Card::new(Rank::Eight, Suit::Hearts), 
+                                Card::new(Rank::King, Suit::Diamonds), 
+                                Card::new(Rank::Ten, Suit::Hearts),
+                                None,
+                                None
                             ), 3);
                         }
                         3   => {
                             assert_eq!(game.compute_winner(
-                                &Card::new(Rank::Seven, Suit::Clubs), 
-                                &Card::new(Rank::Eight, Suit::Hearts), 
-                                &Card::new(Rank::King, Suit::Diamonds), 
-                                &Card::new(Rank::Ten, Suit::Diamonds)
-                            ), 0);
+                                Card::new(Rank::Seven, Suit::Clubs), 
+                                Card::new(Rank::Eight, Suit::Hearts), 
+                                Card::new(Rank::King, Suit::Diamonds), 
+                                Card::new(Rank::Ten, Suit::Diamonds),
+                                None, 
+                                None)
+                            , 0);
                         },
                         _ => (),
                     }
@@ -156,3 +172,5 @@ mod tests {
         game.play();
     }
 }
+
+// add second player choosing wildsuit during nines
